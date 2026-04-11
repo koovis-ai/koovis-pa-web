@@ -98,7 +98,7 @@ export default function ChatPage() {
   );
 
   return (
-    <div className="flex flex-1 flex-col min-w-0">
+    <div className="flex flex-1 flex-col min-w-0 min-h-0">
       <ChatMessages messages={messages} isStreaming={isStreaming} />
       <ChatInput onSend={handleSend} isStreaming={isStreaming} />
     </div>
