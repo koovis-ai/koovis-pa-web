@@ -38,10 +38,10 @@ export function SessionItem({ session, isActive, onSelect, onDelete }: SessionIt
       <MessageSquare className="h-4 w-4 shrink-0" />
       <div className="flex-1 min-w-0">
         <p className="truncate font-medium text-xs">
-          {session.title || 'New Chat'}
+          Chat · {session.model || 'default'}
         </p>
         <p className="text-[10px] text-muted-foreground">
-          {formatDate(session.updated_at)} · {session.message_count} msgs
+          {formatDate(session.last_active_at || session.started_at)} · {session.message_count} msgs
         </p>
       </div>
       <Button

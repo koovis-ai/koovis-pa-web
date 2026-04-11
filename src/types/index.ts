@@ -29,10 +29,12 @@ export interface ToolCall {
 
 export interface Session {
   session_id: string;
-  title: string;
-  created_at: string;
-  updated_at: string;
+  model: string;
+  status: string;
   message_count: number;
+  total_cost_usd: number;
+  started_at: string;
+  last_active_at: string;
 }
 
 export interface SSEEvent {
