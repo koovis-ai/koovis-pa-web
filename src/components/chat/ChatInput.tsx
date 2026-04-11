@@ -1,8 +1,10 @@
 'use client';
 
-import { useState, useRef, useCallback, type KeyboardEvent } from 'react';
+import { useState, useRef, useCallback, type KeyboardEvent, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { SendHorizonal, Square } from 'lucide-react';
+import { VoiceInput } from '@/components/input/VoiceInput';
+import { FileUpload } from '@/components/input/FileUpload';
 
 interface ChatInputProps {
   onSend: (content: string, fileIds?: string[]) => void;
@@ -11,17 +13,19 @@ interface ChatInputProps {
 
 export function ChatInput({ onSend, isStreaming }: ChatInputProps) {
   const [input, setInput] = useState('');
+  const [pendingFileIds, setPendingFileIds] = useState<string[]>([]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleSend = useCallback(() => {
     const trimmed = input.trim();
     if (!trimmed || isStreaming) return;
-    onSend(trimmed);
+    onSend(trimmed, pendingFileIds.length > 0 ? pendingFileIds : undefined);
     setInput('');
+    setPendingFileIds([]);
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
     }
-  }, [input, isStreaming, onSend]);
+  }, [input, isStreaming, onSend, pendingFileIds]);
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -40,10 +44,51 @@ export function ChatInput({ onSend, isStreaming }: ChatInputProps) {
     el.style.height = Math.min(el.scrollHeight, 200) + 'px';
   }, []);
 
+  const handleVoiceTranscript = useCallback((text: string) => {
+    setInput((prev) => (prev ? prev + ' ' + text : text));
+  }, []);
+
+  const handleFilesReady = useCallback((fileIds: string[]) => {
+    setPendingFileIds((prev) => [...prev, ...fileIds]);
+  }, []);
+
+  // Handle clipboard paste for images
+  useEffect(() => {
+    function handlePaste(e: ClipboardEvent) {
+      const items = e.clipboardData?.items;
+      if (!items) return;
+
+      for (const item of items) {
+        if (item.type.startsWith('image/')) {
+          e.preventDefault();
+          const file = item.getAsFile();
+          if (file) {
+            // Trigger file upload via the dropzone
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(file);
+            const input = document.querySelector('input[type="file"]') as HTMLInputElement;
+            if (input) {
+              input.files = dataTransfer.files;
+              input.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+          }
+          break;
+        }
+      }
+    }
+
+    document.addEventListener('paste', handlePaste);
+    return () => document.removeEventListener('paste', handlePaste);
+  }, []);
+
   return (
     <div className="border-t border-border bg-background p-4">
       <div className="mx-auto max-w-3xl">
-        <div className="flex items-end gap-2 rounded-xl border border-border bg-card p-2">
+        <div className="relative flex items-end gap-2 rounded-xl border border-border bg-card p-2">
+          <FileUpload
+            onFilesReady={handleFilesReady}
+            disabled={isStreaming}
+          />
           <textarea
             ref={textareaRef}
             value={input}
@@ -55,6 +100,10 @@ export function ChatInput({ onSend, isStreaming }: ChatInputProps) {
             placeholder="Message Koovis PA..."
             rows={1}
             className="flex-1 resize-none bg-transparent px-2 py-1.5 text-sm outline-none placeholder:text-muted-foreground"
+            disabled={isStreaming}
+          />
+          <VoiceInput
+            onTranscript={handleVoiceTranscript}
             disabled={isStreaming}
           />
           <Button
