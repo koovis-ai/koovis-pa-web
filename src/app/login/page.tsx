@@ -10,6 +10,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { ROUTES } from '@/lib/constants';
 import { Lock } from 'lucide-react';
 import { toast } from 'sonner';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function LoginPage() {
   const [passphrase, setPassphrase] = useState('');
@@ -33,7 +34,10 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex h-full items-center justify-center px-4">
+    <div className="relative flex h-full items-center justify-center px-4">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
       <Card className="w-full max-w-sm">
         <CardHeader className="text-center">
           <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">

@@ -9,6 +9,7 @@ import { Menu } from 'lucide-react';
 import { SessionSidebar } from '@/components/sidebar/SessionSidebar';
 import { useSessions } from '@/hooks/useSessions';
 import { SessionsContext } from '@/contexts/SessionsContext';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import type { Message } from '@/types';
 
 export default function ChatLayout({ children }: { children: React.ReactNode }) {
@@ -81,6 +82,9 @@ export default function ChatLayout({ children }: { children: React.ReactNode }) 
               <Menu className="h-5 w-5" />
             </Button>
             <span className="text-sm font-semibold">Koovis PA</span>
+            <div className="ml-auto">
+              <ThemeToggle />
+            </div>
           </header>
 
           <div className="flex flex-1 min-h-0">
