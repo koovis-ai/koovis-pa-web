@@ -41,3 +41,6 @@ public/swe-worker-*.js
 logs/
 *.log
 .vercel
+
+# Claude Code
+.claude/
