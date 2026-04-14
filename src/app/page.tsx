@@ -1,31 +1,32 @@
 import Link from "next/link";
 import {
-  MessageSquare,
+  Layers,
   Sparkles,
   Shield,
   Mic,
+  ArrowRight,
 } from "lucide-react";
 
 const features = [
   {
-    icon: MessageSquare,
-    title: "Multi-Model AI",
-    desc: "Claude, GPT, and Gemini with intelligent routing. The right model for every query.",
+    icon: Layers,
+    title: "Multi-Model Intelligence",
+    desc: "Claude, GPT, and Gemini behind one interface. Intelligent routing picks the right model for every query — you just ask.",
   },
   {
     icon: Sparkles,
-    title: "Tool Use",
-    desc: "Web search, file analysis, and custom tools. More than just conversation.",
+    title: "Tools, Not Just Chat",
+    desc: "Web search, file analysis, and custom tools built in. Koovis acts on your behalf, not just responds.",
   },
   {
     icon: Mic,
-    title: "Voice & Files",
-    desc: "Voice input and file uploads. Drop images, PDFs, and documents.",
+    title: "Voice & File Input",
+    desc: "Speak or drop files — images, PDFs, documents. Everything goes into the same conversation naturally.",
   },
   {
     icon: Shield,
-    title: "Private & Reliable",
-    desc: "Your conversations stay yours. Automatic failover keeps things running.",
+    title: "Private & Always On",
+    desc: "Your conversations stay yours. Multi-provider failover means Koovis works even when individual providers don't.",
   },
 ];
 
@@ -33,31 +34,29 @@ export default function LandingPage() {
   return (
     <div className="flex min-h-full flex-col bg-background text-foreground">
       {/* Hero */}
-      <main className="flex flex-1 flex-col items-center justify-center px-4 py-16 sm:py-24">
+      <main className="flex flex-1 flex-col items-center justify-center px-5 py-20 sm:py-28">
         <div className="mx-auto max-w-2xl text-center">
-          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 border border-border">
-            <MessageSquare className="h-8 w-8 text-primary" />
-          </div>
-
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-            Koovis
+            <span>koovis</span>{" "}
+            <span className="text-muted-foreground font-medium">ai</span>
           </h1>
-          <p className="mt-2 text-lg text-muted-foreground">
+          <p className="mt-3 text-lg text-muted-foreground">
             Your personal AI assistant
           </p>
 
-          <p className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-muted-foreground">
-            Multi-model AI assistant powered by Claude, GPT, and Gemini.
-            Conversation history, tool use, voice input, and file uploads.
-            Built for daily use.
+          <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-muted-foreground/80">
+            One interface. Three frontier models. Built for the things
+            you actually use AI for every day — research, writing, analysis,
+            and getting things done.
           </p>
 
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <Link
               href="/chat"
-              className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
             >
               Open Chat
+              <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/login"
@@ -69,13 +68,13 @@ export default function LandingPage() {
         </div>
 
         {/* Features */}
-        <div className="mx-auto mt-16 grid max-w-3xl gap-4 px-4 sm:grid-cols-2">
+        <div className="mx-auto mt-20 grid max-w-3xl gap-4 px-4 sm:grid-cols-2">
           {features.map((feature) => (
             <div
               key={feature.title}
               className="rounded-xl border border-border bg-card p-5"
             >
-              <feature.icon className="h-5 w-5 text-primary" />
+              <feature.icon className="h-5 w-5 text-muted-foreground" />
               <h3 className="mt-3 text-sm font-semibold">{feature.title}</h3>
               <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                 {feature.desc}
@@ -88,7 +87,7 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="border-t border-border py-6 text-center">
         <p className="text-xs text-muted-foreground">
-          Powered by{" "}
+          Built by{" "}
           <a
             href="https://www.koovis.ai"
             target="_blank"
