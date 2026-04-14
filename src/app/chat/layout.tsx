@@ -5,8 +5,9 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { ROUTES } from '@/lib/constants';
 import { Button } from '@/components/ui/button';
-import { Menu } from 'lucide-react';
+import { Menu, Bot } from 'lucide-react';
 import { SessionSidebar } from '@/components/sidebar/SessionSidebar';
+import Link from 'next/link';
 import { useSessions } from '@/hooks/useSessions';
 import { SessionsContext } from '@/contexts/SessionsContext';
 import { ThemeToggle } from '@/components/ThemeToggle';
@@ -95,7 +96,12 @@ export default function ChatLayout({ children }: { children: React.ReactNode }) 
               <Menu className="h-5 w-5" />
             </Button>
             <span className="text-sm font-semibold">Koovis</span>
-            <div className="ml-auto">
+            <div className="ml-auto flex items-center gap-1">
+              <Link href={ROUTES.AGENTS}>
+                <Button variant="ghost" size="icon-sm" title="Agent Dashboard">
+                  <Bot className="h-4 w-4" />
+                </Button>
+              </Link>
               <ThemeToggle />
             </div>
           </header>
