@@ -1,26 +1,44 @@
-# Koovis
+# Koovis PA — Web Frontend
 
-Personal AI assistant by Koovis AI LLC. The intelligence layer that sits above all Koovis AI systems — managing tasks, documents, finances, learning, and security through specialized modules with multi-model orchestration.
+Next.js 15 web client for Koovis PA. Deployed to `pa.koovis.ai` via Vercel. Connects to the backend API at `api.koovis.ai` (FastAPI running on EC2, source in `koovis-hq`).
 
 ## Status
 
-**Planning phase.** No code yet. Design starts Month 4-5 (June 2026).
+**Live.** Production web client for Koovis PA.
 
-This repo currently contains:
-- `archive/` — Original infrastructure blueprints (historical, "Jarvis" era)
-- `docs/` — Design phase documents (to be created Month 4-5)
-- `src/` — Source code (to be created Month 5-6)
+This repo is **frontend only**. The PA backend — chat engine, agent orchestrator, MCP server, Telegram bot, SQLite DB, 13 MCP tools — lives in the `koovis-hq` repo.
 
-## Relationship to koovis-hq
+## Architecture
 
-Koovis is a separate system with its own release cycle. It integrates WITH koovis-hq services but is not part of koovis-hq. Strategy docs, architecture blueprints, and project tracking live in koovis-hq.
+```
+┌─────────────────────┐       ┌──────────────────────┐       ┌──────────┐
+│ koovis-pa-web (this) │  →→→  │ koovis-hq (EC2)      │  →→→  │ koovis.db│
+│ Next.js 15 · Vercel │ HTTPS │ FastAPI · bot · MCP  │       │ SQLite   │
+│ pa.koovis.ai        │       │ api.koovis.ai        │       │ + S3     │
+└─────────────────────┘       └──────────────────────┘       └──────────┘
+```
 
-See `CLAUDE.md` for pointers to canonical documents.
+## Canonical Docs
 
-## Architecture (Planned)
+| To understand | Read |
+|---|---|
+| **What Koovis PA is** (product, positioning, GTM) | `koovis-hq/docs/blueprints/PA_PRODUCT_SPEC.md` |
+| **What we're building now** (MVP, architecture, week-by-week) | `koovis-hq/projects/pa-koovis/BLUEPRINT.md` |
+| **Why we decided X** | `koovis-hq/projects/pa-koovis/DECISIONS.md` |
+| **Where to start** | `koovis-hq/projects/pa-koovis/README.md` |
+| **Frontend internals** (this repo) | `CLAUDE.md` |
 
-Multi-model orchestration: route to best model per task. Claude Max for complex reasoning, Ollama local models for privacy-sensitive and offline tasks. Central context store (koovis-hq) shared across all modules.
+## Local Dev
+
+```bash
+npm install
+npm run dev     # localhost:3000
+npm run build
+npm run start
+```
+
+Backend API base: `https://api.koovis.ai/api`
 
 ---
 
-*Koovis AI LLC — Koovis*
+*Koovis AI — Koovis PA*
