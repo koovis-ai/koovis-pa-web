@@ -37,6 +37,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       try {
         const decoded = jwtDecode<JwtPayload>(token);
         if (decoded.exp * 1000 > Date.now()) {
+          // eslint-disable-next-line react-hooks/set-state-in-effect -- initial auth derives from localStorage which is client-only
           setState({ isAuthenticated: true, isLoading: false });
           return;
         }

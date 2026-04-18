@@ -21,9 +21,11 @@ export default function ChatLayout({ children }: { children: React.ReactNode }) 
 
   // Stable refs for event handlers — avoids re-registering listeners on every render
   const refreshRef = useRef(sessionsHook.refreshSessions);
-  refreshRef.current = sessionsHook.refreshSessions;
   const createSessionRef = useRef(sessionsHook.createSession);
-  createSessionRef.current = sessionsHook.createSession;
+  useEffect(() => {
+    refreshRef.current = sessionsHook.refreshSessions;
+    createSessionRef.current = sessionsHook.createSession;
+  });
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {

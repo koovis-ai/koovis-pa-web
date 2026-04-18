@@ -32,11 +32,13 @@ export default function ChatPage() {
 
   // Stable refs for event handlers
   const activeSessionRef = useRef(activeSessionId);
-  activeSessionRef.current = activeSessionId;
   const setActiveSessionRef = useRef(setActiveSessionId);
-  setActiveSessionRef.current = setActiveSessionId;
   const refreshSessionsRef = useRef(refreshSessions);
-  refreshSessionsRef.current = refreshSessions;
+  useEffect(() => {
+    activeSessionRef.current = activeSessionId;
+    setActiveSessionRef.current = setActiveSessionId;
+    refreshSessionsRef.current = refreshSessions;
+  });
 
   // On mount, restore the active session's messages from the backend
   const loadedRef = useRef(false);
