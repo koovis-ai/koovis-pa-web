@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-// Holding page while the API behind this app is off (koovis-hq ops B14/B13).
+// Holding page while the API behind this app is off (ops B14/B13).
 // next.config.ts sends every app route here; remove those redirects to restore the app.
 export const metadata: Metadata = {
   title: "Koovis Workforce — private preview",
