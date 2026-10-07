@@ -83,10 +83,10 @@ npm run lint    # ESLint
 
 ## Canonical Documents (in koovis-hq)
 
-- **Start here:** `koovis-workforce/docs/README.md` — doc map + status snapshot
-- **Product Spec** (what Koovis PA is, market, GTM): `koovis-workforce/docs/PA_PRODUCT_SPEC.md`
-- **Execution Blueprint** (MVP, architecture, week-by-week): `koovis-workforce/docs/BLUEPRINT.md`
-- **Decisions** (why we chose X, append-only): `koovis-workforce/docs/DECISIONS.md`
+- **Start here:** `koovis-hq/docs/archive/workforce/README.md` — doc map + status snapshot
+- **Product Spec** (what Koovis PA is, market, GTM): `koovis-hq/docs/archive/workforce/PA_PRODUCT_SPEC.md`
+- **Execution Blueprint** (MVP, architecture, week-by-week): `koovis-hq/docs/workforce/BLUEPRINT.md`
+- **Decisions** (why we chose X, append-only): `koovis-hq/docs/archive/workforce/DECISIONS.md`
 - **System architecture & infra**: `koovis-hq/docs/archive/blueprints/MASTER_BLUEPRINT_v5.md` — §4.6 (infra, absorbed from old PA_INFRASTRUCTURE) and §8 (Koovis Intelligence Layer, absorbed from old KOOVIS_PA)
 
 Note: `PA_INFRASTRUCTURE.md` and `KOOVIS_PA.md` were archived — their content was absorbed into MASTER_BLUEPRINT_v5.md.

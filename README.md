@@ -22,10 +22,10 @@ This repo is **frontend only**. The PA backend — chat engine, agent orchestrat
 
 | To understand | Read |
 |---|---|
-| **What Koovis PA is** (product, positioning, GTM) | `koovis-workforce/docs/PA_PRODUCT_SPEC.md` |
-| **What we're building now** (MVP, architecture, week-by-week) | `koovis-workforce/docs/BLUEPRINT.md` |
-| **Why we decided X** | `koovis-workforce/docs/DECISIONS.md` |
-| **Where to start** | `koovis-workforce/docs/README.md` |
+| **What Koovis PA is** (product, positioning, GTM) | `koovis-hq/docs/archive/workforce/PA_PRODUCT_SPEC.md` |
+| **What we're building now** (MVP, architecture, week-by-week) | `koovis-hq/docs/workforce/BLUEPRINT.md` |
+| **Why we decided X** | `koovis-hq/docs/archive/workforce/DECISIONS.md` |
+| **Where to start** | `koovis-hq/docs/archive/workforce/README.md` |
 | **Frontend internals** (this repo) | `CLAUDE.md` |
 
 ## Local Dev
